@@ -1,0 +1,24 @@
+---
+//codigo server side only - momento de construccion BUILD TIME
+import PokemonCard from "@components/pokemons/PokemonCard.astro";
+import Title from "@components/shared/Title.astro";
+import type { PokemonListResponse } from "@interfaces/pokemon-list.response";
+
+import MainLayout from "@layouts/MainLayout.astro";
+
+const resp = await fetch("https://pokeapi.co/api/v2/pokemon");
+const data = (await resp.json()) as PokemonListResponse;
+
+const title = "Pokemon Static | Home";
+---
+
+<MainLayout title={title}>
+  <Title>Listado</Title>
+
+  <section
+    aria-label="Listado de Pokémons"
+    class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-5 gap-4 mt-5"
+  >
+    {data.results.map(({ name, url }) => <PokemonCard name={name} url={url} />)}
+  </section>
+</MainLayout>
