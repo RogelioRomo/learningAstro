@@ -1,0 +1,76 @@
+---
+import { Image, Picture } from "astro:assets";
+import MainLayout from "src/layouts/MainLayout.astro";
+
+import post05Img from "@images/post-05.jpg";
+---
+
+<!-- NOTA: El compilador de astro no procesa nada que se encuentre en la carpeta Public del proyecto
+ Solo lo que se encuentre en la carpeta de source(src) -->
+<MainLayout title="Imagenes">
+  <h1 class="text-5xl text-white">Imagenes</h1>
+  <!-- the <img> tag does not have a way to optimize so we use <Image> from Astro -->
+  <img
+    loading="eager"
+    src="/assets/images/post-01.jpg"
+    width="250"
+    height="250"
+  />
+
+  <!-- <Image
+    loading="eager"
+    src="/assets/images/post-01.jpg" //since this is located in public folder, the image optimization does not work
+    width="250"
+    height="250"
+    alt="Imagen del post"
+  /> -->
+
+  <Image
+    loading="eager"
+    src={post05Img}
+    width="250"
+    height="250"
+    alt="Imagen del post"
+  />
+
+  <h1>Quality low</h1>
+  <Image
+    loading="eager"
+    quality="low"
+    src={post05Img}
+    width="250"
+    height="250"
+    alt="Imagen del post"
+  />
+
+  <h1>Format</h1>
+  <Image
+    format="avif"
+    src={post05Img}
+    width="250"
+    height="250"
+    alt="Imagen del post"
+  />
+
+  <h1>Picture</h1>
+  <Picture
+    formats={["webp", "avif", "jpeg"]}
+    src={post05Img}
+    width="250"
+    height="250"
+    alt="Imagen del post"
+  />
+
+  <div
+    style={{
+      height: "3000px",
+    }}
+  >
+  </div>
+  <img
+    loading="lazy"
+    src="/assets/images/post-05.jpg"
+    width="250"
+    height="250"
+  />
+</MainLayout>
