@@ -1,0 +1,5 @@
+GET http://localhost:4321/api/clients
+
+###
+
+POST http://localhost:4321/api/clients
